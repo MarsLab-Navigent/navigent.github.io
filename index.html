@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Navigent: A Geometry-Grounded Agentic Framework for Vision Language Navigation.">
+  <title>Navigent | A Geometry-Grounded Agentic Framework for Vision Language Navigation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css"><script defer src="site.js"></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<nav class="top"><div class="wrap">
+  <a class="brand" href="#top"><img src="assets/scout-mini.png" alt="">Navigent</a>
+  <div class="links"><a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#video">Video</a><a href="#results">Results</a><a href="#analysis">Analysis</a><a href="#cite">Cite</a></div>
+</div></nav>
+
+<header class="cover" id="top">
+  <div class="wrap cover-in">
+    <h1><span class="ac">Navi</span>gent</h1>
+    <div class="cover-logos"><img src="assets/mars-lab-logo.png" alt="MARS Lab"><img class="ntu" src="assets/ntu-logo.png" alt="Nanyang Technological University"></div>
+    <p class="tagline">A Geometry-Grounded Agentic Framework for Vision Language Navigation</p>
+    <div class="under">
+      <div class="wall" aria-hidden="true">
+        <div class="cgrid">
+          <div class="crow"><div class="tile sim"><video muted loop playsinline preload="none" poster="assets/cover/sim-9142.jpg" data-src="assets/cover/sim-9142.mp4"></video></div><div class="tile real"><video muted loop playsinline preload="none" poster="assets/cover/real-01.jpg" data-src="assets/cover/real-01.mp4"></video></div><div class="tile sim"><video muted loop playsinline preload="none" poster="assets/cover/sim-8717.jpg" data-src="assets/cover/sim-8717.mp4"></video></div></div>
+          <div class="crow"><div class="tile real"><video muted loop playsinline preload="none" poster="assets/cover/real-02.jpg" data-src="assets/cover/real-02.mp4"></video></div><div class="tile sim"><video muted loop playsinline preload="none" poster="assets/cover/sim-1807.jpg" data-src="assets/cover/sim-1807.mp4"></video></div><div class="tile real"><video muted loop playsinline preload="none" poster="assets/cover/real-04.jpg" data-src="assets/cover/real-04.mp4"></video></div></div>
+          <div class="crow"><div class="tile sim"><video muted loop playsinline preload="none" poster="assets/cover/sim-8858.jpg" data-src="assets/cover/sim-8858.mp4"></video></div><div class="tile real"><video muted loop playsinline preload="none" poster="assets/cover/real-05.jpg" data-src="assets/cover/real-05.mp4"></video></div><div class="tile sim"><video muted loop playsinline preload="none" poster="assets/cover/sim-1122.jpg" data-src="assets/cover/sim-1122.mp4"></video></div></div>
+        </div>
+      </div>
+      <div class="byline">
+        <p class="authors"><span class="au">Xinyu Zhou<sup>1,*</sup></span>, <span class="au">Weiren Cai<sup>1,*</sup></span>, <span class="au">Yitong Chen<sup>1,*</sup></span>, <span class="au">Shenghai Yuan<sup>2</sup></span>, <span class="au">Zihang Mu<sup>1</sup></span>, <span class="au">Boyu Ma<sup>1</sup></span>, <span class="au">Jiahua Dong<sup>1</sup></span>, <span class="au">Yanshuo Lu<sup>1</sup></span>, <span class="au">Jiaqi Bai<sup>1</sup></span>, <span class="au">Jianfei Yang<sup>1,&dagger;</sup></span><br>
+          <span class="aff"><sup>1</sup>MARS Lab, Nanyang Technological University &nbsp;&middot;&nbsp; <sup>2</sup>IoT Lab, Nanyang Technological University</span><br>
+          <small>* Equal contribution &nbsp;&middot;&nbsp; &dagger; Corresponding author</small></p>
+        <div class="btns">
+          <span class="btn primary" aria-disabled="true" title="Paper coming soon">Paper</span>
+          <a class="btn" href="https://github.com/MarsLab-Navigent/Navigent" target="_blank" rel="noopener">Code</a>
+          <a class="btn" href="#video">Video</a>
+          <a class="btn" href="#cite">BibTeX</a>
+        </div>
+          </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="abstract"><div class="wrap">
+  <h2 class="sec">Abstract</h2>
+  <p class="lede">Vision-and-Language Navigation (VLN) with general-purpose multimodal large language models (MLLMs) offers a flexible alternative to task-specific navigation policies, while reliable long-horizon execution remains challenging. Agents must track navigation progress, detect discrepancies between commanded and actual motion, and recognize when movement has passed relevant landmarks or entrances.</p>
+  <div class="idea">
+    <div class="prose">
+      <p>We present Navigent, an agentic VLN framework built around a frozen MLLM and a <em>Geometry-Grounded Execution Critic</em> (GEC). GEC performs two complementary checks: action-to-motion consistency, which evaluates measured displacement against commanded movement, and motion-to-landmark consistency, which tracks agent-selected visual anchors and entrance candidates in world coordinates. Detected discrepancies interrupt the remaining action sequence and trigger reobservation, local adjustment, or node-based recovery. Historical visual memory supports progress tracking across extended routes. An offline self-improvement procedure further analyzes successful and failed training trajectories to refine navigation prompts and GEC logic while keeping model weights fixed.</p>
+      <p>On the R2R-CE validation-unseen split (1,839 episodes) and RxR-CE validation-unseen split (3,669 episodes), Navigent achieves <strong>84.0%/86.0% SR</strong> and <strong>72.9%/69.1% SPL</strong>, respectively, demonstrating the value of geometry-grounded execution verification for reliable agentic navigation.</p>
+    </div>
+    <figure class="plate"><img src="assets/habitat-route-illustration.jpg" alt="Navigent route showing a correct path, a wrong turn, and recovery"><figcaption>A Navigent route with a correct path, a wrong turn, and recovery.</figcaption></figure>
+  </div>
+  <figure class="plate wide"><img src="assets/navigent-motivation-plots-top.png" width="2200" height="1761" loading="lazy" alt="Navigent motivation: navigation progress on R2R-CE and RxR-CE, then geometric execution checks and offline self-improvement"><figcaption><b>Figure 1.</b>Navigent combines geometric execution checks with self-improvement. The plots compare navigation performance on R2R-CE and RxR-CE.</figcaption></figure>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <h2 class="sec">Method</h2>
+  <div class="prose">
+    <p class="lede">Given a natural-language route instruction, Navigent uses successive visual observations to choose movement commands and decide when to stop at the described destination. The method combines uniform historical visual memory with a Geometry-Grounded Execution Critic (GEC) and node recovery, while self-improvement refines navigation prompts and GEC logic.</p>
+    <p class="lede">Visual memory supplies the current observation and up to eight images sampled across the executed route. The agent predicts a short action sequence, while GEC monitors measured execution and local visual anchors. A detected discrepancy interrupts the remaining sequence; the agent then reobserves and chooses a local adjustment or a return to a visited node. The selected version remains fixed during navigation evaluation, while observation memory and execution state continue to update.</p>
+  </div>
+  <figure class="plate wide"><img src="assets/navigent-overview.png" width="2200" height="1221" loading="lazy" alt="Navigent framework showing online navigation and offline self-improvement"><figcaption><b>Figure 2.</b>Online navigation and offline self-improvement.</figcaption></figure>
+  <div class="msteps">
+    <article class="mstep"><h3>Navigation Context and Execution</h3><p>Following a route requires relating the current scene to previously encountered landmarks and branches. Navigent retains a chronological observation archive and uniformly samples it at each decision, allowing the agent to inspect earlier route segments within a fixed budget of newly attached images. The current observation is outside the eight-frame history budget. The instruction enters the first decision and later decisions continue the same episode conversation. Navigation state records the starting pose, trajectory, visited nodes, traversed connections, return-path lengths, relative return bearings, heading, previous primitive counts, and blocked status.</p></article>
+    <article class="mstep"><h3>Geometry-Grounded Execution Critic and Node Recovery</h3><p>The agent predicts discrete forward and turning commands, or STOP, and executes a bounded prefix before obtaining a new observation. Each forward primitive is checked against its measured displacement. A depth precheck estimates near-field clearance before forward execution; measured motion checks detect insufficient forward progress, persistently small displacement, negative forward progress, or excessive lateral displacement. Local visual anchors track the distance and bearing of selected targets in world coordinates, while entrance candidates support entrance monitoring. When a discrepancy is detected, the remaining primitives are discarded and the agent receives a fresh observation, updated self-pose, primitive counts, and blocked status to choose a local adjustment or return to a visited node.</p></article>
+    <article class="mstep"><h3>Self-Improvement</h3><p>Completed training episodes are used for offline self-improvement of navigation prompts and GEC implementation while the MLLM weights remain fixed. Successful and failed trajectories provide observations, model responses, executed primitives, and measured motion for failure diagnosis. Three candidate patches are proposed from the same parent version, evaluated on the fixed training set, and compared by repairs minus regressions. Only a candidate with positive net gain is carried forward; otherwise the current version is retained. The selected prompt and GEC implementation are then fixed for navigation evaluation.</p></article>
+  </div>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <h2 class="sec">Video</h2>
+  <div class="robot"><h4>Simulation</h4><p>R2R / RxR</p></div>
+  <div class="rtasks r2">
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-r2r-1807.jpg" src="assets/replay-r2r-1807.mp4"></video></div><figcaption><h4>Hallway to the mirror</h4><span class="meta">R2R-CE / episode 1807</span><p>Pass between the couch and counter, follow the hallway, and stop by the mirror.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-r2r-1122.jpg" src="assets/replay-r2r-1122.mp4"></video></div><figcaption><h4>Stairs to the bedroom</h4><span class="meta">R2R-CE / episode 1122</span><p>Climb the stairs, turn left, and wait at the bedroom doorway.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-r2r-8.jpg" src="assets/replay-r2r-8.mp4"></video></div><figcaption><h4>Across the room to the bar</h4><span class="meta">R2R-CE / episode 8</span><p>Cross the room and wait at the far end of the bar.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-8858.jpg" src="assets/replay-rxr-8858.mp4"></video></div><figcaption><h4>Kitchen to the dining room</h4><span class="meta">RxR-CE / episode 8858</span><p>Pass between counters, go through the arch, and stop by the dining table.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-9142.jpg" src="assets/replay-rxr-9142.mp4"></video></div><figcaption><h4>Arched hallway to the bathroom</h4><span class="meta">RxR-CE / episode 9142</span><p>Pass the kitchen island, take the arch beside the stairs, and enter the bathroom.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-8717.jpg" src="assets/replay-rxr-8717.mp4"></video></div><figcaption><h4>Red carpet to the doorway</h4><span class="meta">RxR-CE / episode 8717</span><p>Follow the red carpet past the chairs and stop at the open doorway.</p></figcaption></figure>
+  </div>
+  <div class="robot"><h4>Real world</h4><p>SCOUT MINI deployment &middot; Two indoor tasks and two outdoor tasks</p></div>
+  <div class="rtasks">
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/01_black_to_blue.jpg" src="assets/01_black_to_blue.mp4"></video></div><figcaption><h4>Black to blue cylinders</h4><span class="meta">Indoor / cylinder sequence</span><p>Approach the black cylinder, then continue to the blue cylinder.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/04_black_blue_round_trip.jpg" src="assets/04_black_blue_round_trip.mp4"></video></div><figcaption><h4>Cylinder round trip</h4><span class="meta">Indoor / cylinder shuttle</span><p>Navigate between the black and blue cylinders and return to the starting area.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/02_corridor_right_turn.jpg" src="assets/02_corridor_right_turn.mp4"></video></div><figcaption><h4>Second white pillar</h4><span class="meta">Outdoor / pillar task</span><p>Follow the route and stop at the second white pillar.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/05_water_dispenser_to_trash_bin.jpg" src="assets/05_water_dispenser_to_trash_bin.mp4"></video></div><figcaption><h4>Water dispenser to green bin</h4><span class="meta">Outdoor / trash-bin task</span><p>Navigate from the water dispenser to the green trash bin.</p></figcaption></figure>
+  </div>
+  <div class="robot"><h4>Recovery</h4></div>
+  <div class="rtasks r23">
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-r2r-573.jpg" src="assets/replay-r2r-573.mp4"></video></div><figcaption><h4>The wrong doorway</h4><p>Returned to node 2, chose another door, and stopped 0.11 m from the goal.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-7709.jpg" src="assets/replay-rxr-7709.mp4"></video></div><figcaption><h4>Fireplace approach</h4><p>Returned to node 3 and approached the fireplace from the other side.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-7764.jpg" src="assets/replay-rxr-7764.mp4"></video></div><figcaption><h4>Gallery junction</h4><p>Returned to node 2 and took the hallway toward the wall-mounted guitar.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-8684.jpg" src="assets/replay-rxr-8684.mp4"></video></div><figcaption><h4>Gym entrance</h4><p>Returned near the dining area before entering the exercise space.</p></figcaption></figure>
+        <figure class="rt"><div class="tv"><video controls playsinline muted preload="metadata" poster="assets/replay-rxr-8712.jpg" src="assets/replay-rxr-8712.mp4"></video></div><figcaption><h4>Bathroom beyond the piano</h4><p>Recovered from the dresser and piano area, then reached the bathroom.</p></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="results"><div class="wrap">
+  <h2 class="sec">Results</h2>
+  <div class="numbers" aria-label="Headline results">
+    <div class="num"><div class="v"><span class="n" data-count="84.0">84.0</span><span class="x">%</span></div><div class="k">R2R-CE success rate</div></div>
+    <div class="num"><div class="v"><span class="n" data-count="86.0">86.0</span><span class="x">%</span></div><div class="k">RxR-CE success rate</div></div>
+    <div class="num"><div class="v"><span class="n" data-count="90.0">90.0</span><span class="x">%</span></div><div class="k">Real-world success rate</div></div>
+  </div>
+  <article class="block">
+    <h3>Benchmark performance</h3>
+    <p class="lede">Navigent reaches 84.0% SR on R2R-CE and 86.0% SR on RxR-CE. The complete metrics are retained in the table.</p>
+    <div class="tcard"><table class="full-results"><thead><tr><th>Method</th><th colspan="4">R2R-CE</th><th colspan="4">RxR-CE</th></tr><tr><th></th><th>NE &darr;</th><th>OSR &uarr;</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>NE &darr;</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>nDTW &uarr;</th></tr></thead><tbody>
+<tr><th>HNR</th><td>4.42</td><td>67.0</td><td>61.0</td><td>51.0</td><td>5.50</td><td>56.3</td><td>46.7</td><td>63.5</td></tr>
+<tr><th>NaVid</th><td>5.47</td><td>49.1</td><td>37.4</td><td>35.9</td><td>8.41</td><td>23.8</td><td>21.2</td><td>&mdash;</td></tr>
+<tr><th>NaVILA</th><td>5.22</td><td>62.5</td><td>54.0</td><td>49.0</td><td>6.77</td><td>49.3</td><td>44.0</td><td>58.8</td></tr>
+<tr><th>Uni-NaVid</th><td>5.58</td><td>53.5</td><td>47.0</td><td>42.7</td><td>6.24</td><td>48.7</td><td>40.9</td><td>&mdash;</td></tr>
+<tr><th>StreamVLN</th><td>4.90</td><td>63.6</td><td>56.4</td><td>50.2</td><td>5.65</td><td>54.4</td><td>45.4</td><td>63.7</td></tr>
+<tr><th>JanusVLN</th><td>4.78</td><td>65.2</td><td>60.5</td><td>56.8</td><td>6.06</td><td>56.2</td><td>47.5</td><td>62.1</td></tr>
+<tr><th>NavFoM</th><td>4.61</td><td>72.1</td><td>61.7</td><td>55.3</td><td>4.74</td><td>64.4</td><td>56.2</td><td>65.8</td></tr>
+<tr><th>CorrectNav</th><td>4.24</td><td>67.5</td><td>65.1</td><td>62.3</td><td>4.09</td><td>69.3</td><td>63.3</td><td>75.2</td></tr>
+<tr><th>OmniNav</th><td>3.74</td><td>74.6</td><td>69.5</td><td>66.1</td><td>3.77</td><td>73.6</td><td>62.0</td><td>&mdash;</td></tr>
+<tr><th>AwareVLN</th><td>4.02</td><td>73.5</td><td>65.4</td><td>55.1</td><td>3.95</td><td>67.6</td><td>56.1</td><td>65.7</td></tr>
+<tr><th>InstructNav</th><td>6.90</td><td>&mdash;</td><td>31.0</td><td>24.0</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>NavGPT-CE</th><td>8.40</td><td>26.9</td><td>16.3</td><td>10.2</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>CA-Nav</th><td>7.58</td><td>48.0</td><td>25.3</td><td>10.8</td><td>10.37</td><td>19.0</td><td>6.0</td><td>13.5</td></tr>
+<tr><th>GC-VLN</th><td>7.30</td><td>41.8</td><td>33.6</td><td>16.3</td><td>8.80</td><td>33.8</td><td>13.8</td><td>&mdash;</td></tr>
+<tr><th>AO-Planner</th><td>6.95</td><td>38.3</td><td>25.5</td><td>16.6</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>HSGM</th><td>5.42</td><td>58.7</td><td>47.9</td><td>32.8</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>GTA</th><td>4.95</td><td>56.2</td><td>48.8</td><td>41.8</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><th>HarnessVLN</th><td>4.08</td><td>70.7</td><td>59.6</td><td>43.6</td><td>6.50</td><td>51.4</td><td>38.1</td><td>55.6</td></tr>
+<tr><th>AgentVLN</th><td>3.88</td><td>73.5</td><td>67.2</td><td>64.7</td><td>3.92</td><td>69.5</td><td>61.3</td><td>74.6</td></tr>
+<tr class="ours"><th>Navigent</th><td>2.22</td><td>86.1</td><td>84.0</td><td>72.9</td><td>1.92</td><td>86.0</td><td>69.1</td><td>79.7</td></tr>
+</tbody></table></div>
+  </article>
+  <article class="block">
+    <h3>Real-world deployment</h3>
+    <div class="mrow top">
+      <div class="step-txt"><p><strong>We evaluate Navigent on an AgileX SCOUT MINI mobile robot with an Intel RealSense D456 depth camera.</strong> Each of two indoor tasks and four outdoor tasks is attempted five times. A trial succeeds only when the robot executes STOP within 1 m of the designated target.</p><p>The indoor evaluation tests approaching a black cylinder followed by a blue cylinder, and shuttling between the two cylinders. The outdoor evaluation tests a gray chair, a green trash bin, the second white pillar after a corridor turn, and the route from the water dispenser to the green bin. Navigent completes 27 of 30 trials, for 90.0% SR.</p></div>
+      <div class="tcard"><table class="compact-results"><thead><tr><th>Task</th><th>Successes</th><th>SR</th></tr></thead><tbody>
+          <tr class="group-row"><th colspan="3">Indoor</th></tr>
+          <tr><th>Black, then blue cylinder</th><td>4/5</td><td>80.0%</td></tr>
+          <tr><th>Black-blue cylinder shuttle</th><td>5/5</td><td>100.0%</td></tr>
+          <tr class="group-row"><th colspan="3">Outdoor</th></tr>
+          <tr><th>Approach the gray chair</th><td>5/5</td><td>100.0%</td></tr>
+          <tr><th>Approach the green trash bin</th><td>4/5</td><td>80.0%</td></tr>
+          <tr><th>Stop at the second pillar</th><td>4/5</td><td>80.0%</td></tr>
+          <tr><th>Water dispenser, then green bin</th><td>5/5</td><td>100.0%</td></tr>
+          <tr class="ours"><th>Overall</th><td>27/30</td><td>90.0%</td></tr>
+        </tbody></table></div>
+    </div>
+  </article>
+</div></section>
+
+<section id="analysis"><div class="wrap">
+  <h2 class="sec">Analysis</h2>
+  <p class="lede">The ablations separate the contributions of route memory, offline refinement, execution verification, and conversational state. The plots show the main trends; the tables retain the complete reported metrics.</p>
+    <article class="block">
+      <h3>Historical-frame selection</h3>
+      <p class="lede"><strong>Uniformly sampled history gives the strongest route context.</strong> All six strategies retain the current observation, episode conversation, and execution critic. No reattached history retains earlier dialogue, while Early 4 + Recent 4 retains unique frames in temporal order.</p>
+      <div class="study">
+        <figure class="plate"><img src="assets/ablation-history.png" alt="Historical-frame selection ablation comparing SR, OSR, and SPL"><figcaption><b>Figure 3.</b>Uniform 8 achieves the highest SR, OSR, and SPL. Compared with No reattached history, it raises SR from 78% to 82% and SPL from 68.2% to 72.3%; other eight-frame strategies reach 77–80% SR, while Uniform 4 reaches 78% SR and 67.6% SPL.</figcaption></figure>
+        <div class="tcard"><table class="compact-results"><thead><tr><th>History policy</th><th>SR</th><th>OSR</th><th>SPL</th></tr></thead><tbody><tr class="ours"><th>Full (Uniform 8)</th><td>82</td><td>85</td><td>72.3</td></tr><tr><th>Early 8</th><td>80</td><td>81</td><td>70.1</td></tr><tr><th>Uniform 4</th><td>78</td><td>81</td><td>67.6</td></tr><tr><th>Recent 8</th><td>77</td><td>80</td><td>67.9</td></tr><tr><th>Early 4 + Recent 4</th><td>79</td><td>82</td><td>70.3</td></tr><tr><th>No reattached history</th><td>78</td><td>80</td><td>68.2</td></tr></tbody></table></div>
+      </div>
+    </article>
+    <article class="block">
+      <h3>Offline self-improvement</h3>
+      <p class="lede"><strong>Each round adds a cumulative navigation capability.</strong> The five configurations are evaluated on Open-Nav100 with frozen MLLM weights. Prompt refinement adds explicit checks for landmark order, spatial relations, and visual progress; later rounds add execution evidence.</p>
+      <div class="study">
+        <figure class="plate"><img src="assets/ablation-rsi.png" alt="Self-improvement ablation showing SR and SPL across five rounds"><figcaption><b>Figure 4.</b>The basic configuration uses measured pose changes to detect stalled forward motion. Depth warnings check obstacles before execution; visual anchors track target distance and bearing; route review compares the current route with the instruction and recorded observations. SR rises from 73% to 82%, with OSR reaching 85% after visual anchors and the final route review reaching 72.3% SPL.</figcaption></figure>
+        <div class="tcard"><table class="compact-results"><thead><tr><th>Round / update</th><th>SR</th><th>SPL</th><th>NE</th><th>OSR</th></tr></thead><tbody><tr><th>1: Basic configuration</th><td>73</td><td>63.6</td><td>3.10</td><td>78</td></tr><tr><th>2: + Prompt refinement</th><td>78</td><td>68.5</td><td>3.29</td><td>80</td></tr><tr><th>3: + Depth warning</th><td>80</td><td>69.9</td><td>3.05</td><td>81</td></tr><tr><th>4: + Visual anchor</th><td>81</td><td>70.0</td><td>2.47</td><td>85</td></tr><tr class="ours"><th>5: + Route review (Full)</th><td>82</td><td>72.3</td><td>3.54</td><td>85</td></tr></tbody></table></div>
+      </div>
+    </article>
+  <article class="block">
+    <h3>What each state signal contributes</h3>
+    <p class="lede">Each ablation is shown as a complete row. The controlled removals use the same Open-Nav100 evaluation setup and retain the other navigation inputs unless stated otherwise.</p>
+    <div class="mrows">
+      <div class="mrow"><div class="step-txt"><h4>Geometry-Grounded Execution Critic</h4><p><strong>The critic links commanded actions to measured motion and target geometry.</strong> With the prompt fixed, adding the critic and route review improves SR by 5 points and SPL by 2.8 points, while reducing NE from 4.09 m to 3.54 m. This comparison isolates the execution-monitoring contribution on Open-Nav100.</p></div><div class="tcard"><table class="compact-results"><thead><tr><th>GEC</th><th>SR</th><th>SPL</th><th>NE</th><th>OSR</th></tr></thead><tbody><tr><th>Off</th><td>77</td><td>69.5</td><td>4.09</td><td>80</td></tr><tr class="ours"><th>Full</th><td>82</td><td>72.3</td><td>3.54</td><td>85</td></tr></tbody></table></div></div>
+      <div class="mrow"><div class="step-txt"><h4>Self-Pose and Visited-Node Inputs</h4><p><strong>Pose and node records provide state for ordinary decisions and recovery.</strong> The executor still retains geometric feedback in every row. Removing either input reduces SR from 82% to 79%; removing both lowers it to 76%. Without pose, NE improves despite lower SR and SPL, so lower navigation error alone does not imply better task completion.</p></div><div class="tcard"><table class="compact-results"><thead><tr><th>State inputs</th><th>SR</th><th>SPL</th><th>NE</th><th>OSR</th></tr></thead><tbody><tr class="ours"><th>Full</th><td>82</td><td>72.3</td><td>3.54</td><td>85</td></tr><tr><th>w/o Pose and Nodes</th><td>76</td><td>70.6</td><td>3.32</td><td>83</td></tr><tr><th>w/o Nodes</th><td>79</td><td>69.0</td><td>3.01</td><td>82</td></tr><tr><th>w/o Pose</th><td>79</td><td>69.1</td><td>2.72</td><td>83</td></tr></tbody></table></div></div>
+      <div class="mrow"><div class="step-txt"><h4>Conversation Continuity</h4><p><strong>Continuing the episode conversation preserves route context.</strong> Single-turn evaluation keeps the instruction and sampled images but resets the dialogue at every decision. SR falls from 82% to 69%, SPL from 72.3% to 60.1%, OSR from 85% to 71%, and NE rises from 3.54 m to 4.47 m. Visual history alone therefore does not recover the benefit of a continuing conversation.</p></div><div class="tcard"><table class="compact-results"><thead><tr><th>Conversation</th><th>SR</th><th>SPL</th><th>NE</th><th>OSR</th></tr></thead><tbody><tr class="ours"><th>Full</th><td>82</td><td>72.3</td><td>3.54</td><td>85</td></tr><tr><th>Single-turn</th><td>69</td><td>60.1</td><td>4.47</td><td>71</td></tr></tbody></table></div></div>
+    </div>
+  </article>
+</div></section>
+
+<section id="cite"><div class="wrap">
+  <div class="cite-row"><h2 class="sec">BibTeX</h2><button class="btn copy-button" type="button">Copy</button></div>
+  <pre class="bib" id="bibtex">@misc{zhou-navigent,
+  title  = {{Navigent}: A Geometry-Grounded Agentic Framework
+            for Vision Language Navigation},
+  author = {Zhou, Xinyu and Cai, Weiren and Chen, Yitong and
+            Yuan, Shenghai and Mu, Zihang and Ma, Boyu and
+            Dong, Jiahua and Lu, Yanshuo and Bai, Jiaqi and Yang, Jianfei},
+}</pre>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="colophon"><img src="assets/mars-lab-logo.png" alt="MARS Lab"><img class="ntu" src="assets/ntu-logo.png" alt="Nanyang Technological University"><span>MARS Lab, Nanyang Technological University</span></div>
+  <a href="#top">Top &uarr;</a>
+</div></footer>
+</body></html>
