@@ -48,7 +48,7 @@ if (wall && tiles.length && canObserve && !reducedMotion && !saveData) {
 }
 
 // Video clips: starting one pauses the others.
-const clips = $$('.rt video');
+const clips = $$('.rt video, .teaser video');
 for (const clip of clips) {
   clip.addEventListener('play', () => {
     clips.forEach((other) => { if (other !== clip && !other.paused) other.pause(); });

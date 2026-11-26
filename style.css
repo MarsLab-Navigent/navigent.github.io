@@ -184,6 +184,9 @@ nav.top .wrap { display: flex; align-items: center; gap: 22px; height: var(--nav
 
 .plate { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 18px 18px 16px; }
 .plate.wide { margin-top: 40px; padding: 22px 22px 18px; }
+.plate.teaser { padding: 14px; }
+#teaser { padding-top: clamp(40px, 6vw, 72px); }
+.plate.teaser video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; background: #0b1220; }
 .plate img { display: block; width: 100%; height: auto; border-radius: 8px; cursor: zoom-in; }
 .plate figcaption { margin-top: auto; color: var(--muted); font-size: 15px; line-height: 1.55; }
 .plate figcaption b { margin-right: 8px; color: var(--ink); font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
